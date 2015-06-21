@@ -8,8 +8,8 @@
      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.min.js') }}">
     <title>Select adapter</title>
 </head>
-
-<div class = "container-fluid" ><center><h1>Please select your adapter</h1></center>
+<body style = "background: #3366FF">
+<div class = "container-fluid"  ><center><h1>Please select your adapter</h1></center>
 <div class = "row">
     <div class = "col-md-2 col-sm-2"></div>
     <div class = "col-md-8 col-sm-8" >
@@ -46,15 +46,17 @@
        <th>NAME</th>
        </thead>
         {% for x in adapters %}
+        {%if x not in monitored%}
         <tr><td>{{x}}</td>
-         <td>
+
+            <td>
 
          <form role="form" action="/putMonitored" method="post">
             <input type = "hidden" name = "adapter" value = {{x}}></input>
             <input type = "submit" class="btn btn-success"value="Put in Monitored Mode"></input>
         </form></td>
         </tr>
-
+           {%endif%}
           {% endfor %}
 
 
