@@ -28,22 +28,25 @@ def wirelessInterface():
 
 def PutMonitorMode(adapter):
     #takes an adapter name to put it into monitor mode
-    command = "airmon-ng start wlan0" 
+    #command = "airmon-ng start wlan0"
     proc = Popen(['airmon-ng','start',adapter],shell=False)
 
 def StartScanningAP(mon):
 
     temp = "tempFile"
     with open(os.devnull, 'wb') as DN:
-        Popen(['airodump-ng','-w',temp,'--output-format', 'csv','--ignore-negative-one', mon[0]],stdout= DN,stderr=DN,shell=False)
+        Popen(['airodump-ng','-w',temp,'--output-format', 'csv','--ignore-negative-one', mon],stdout= DN,stderr=DN,shell=False)
   
 def stopScanning():
     #x = Popen(["ps"," aux",' |', 'grep', 'airodump-ng -w tempFile --output-format csv --ignore-negative-one mon0'],stdout=PIPE)
-    x = Popen(["ps","aux"],stdout=PIPE)
-    x2= Popen(["grep","airodump-ng -w tempFile --output-format csv --ignore-negative-one mon0"],stdin=x.stdout,stdout=PIPE)
-    for line in x2.communicate()[0].split('\n'):
-        print line
 
+    time.sleep(5)
+    x = Popen(["sudo","killall","airodump-ng"],stdout=PIPE)
+    #x2= Popen(["grep","airodump-ng -w tempFile --output-format csv --ignore-negative-one mon0"],stdin=x.stdout,stdout=PIPE)
+    #for line in x2.communicate()[0].split('\n'):
+     #   print line
+def stopMonitorMode(mon):
+    proc = Popen(['airmon-ng','stop',mon],shell=False)
 
 
     #print x2.communicate()[0]
@@ -56,5 +59,5 @@ if __name__ == "__main__":
     print mons
     StartScanningAP(mons)
 
-    time.sleep(10)
+
     stopScanning() 

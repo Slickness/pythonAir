@@ -1,11 +1,69 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
-    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap-theme.min.css') }}">
+     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.min.js') }}">
     <title>Select adapter</title>
 </head>
-<body>
-<h1>please select your adapter</h1>
+
+<div class = "container-fluid" ><center><h1>Please select your adapter</h1></center>
+<div class = "row">
+    <div class = "col-md-2 col-sm-2"></div>
+    <div class = "col-md-8 col-sm-8" >
+    <h2>Monitor Mode Adapters</h2>
+        <table class="table table-hover">
+       <thead>
+       <th>NAME</th>
+       </thead>
+        {% for x in monitored %}
+        <tr><td>{{x}}</td>
+          <td>
+
+         <form role="form" action="/stopMonitored" method="post">
+            <input type = "hidden" name = "mon" value = {{x}}></input>
+            <input type = "submit" class="btn btn-danger"value="Take out of Monitored Mode"></input>
+        </form></td>
+            <td>
+
+         <form role="form" action="/startScan" method="post">
+            <input type = "hidden" name = "mon" value = {{x}}></input>
+            <input type = "submit" class="btn btn-success"value="Start Scanning"></input>
+        </form></td>
+
+            </tr>
+
+
+            {%endfor %}
+
+
+    </table>
+    <h2>Adapters</h2>
+    <table class="table table-hover">
+       <thead>
+       <th>NAME</th>
+       </thead>
+        {% for x in adapters %}
+        <tr><td>{{x}}</td>
+         <td>
+
+         <form role="form" action="/putMonitored" method="post">
+            <input type = "hidden" name = "adapter" value = {{x}}></input>
+            <input type = "submit" class="btn btn-success"value="Put in Monitored Mode"></input>
+        </form></td>
+        </tr>
+
+          {% endfor %}
+
+
+    </table>
+
+</div>
+<div class = "col-md-2 col-sm-2"></div>
+
+</div></div>
 
 </body>
 </html>
