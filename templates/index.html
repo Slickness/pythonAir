@@ -8,7 +8,7 @@
      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.min.js') }}">
     <title>Select adapter</title>
 </head>
-<body style = "background: #3366FF">
+<body style = "background: #B2E0FF">
 <div class = "container-fluid"  ><center><h1>Please select your adapter</h1></center>
 <div class = "row">
     <div class = "col-md-2 col-sm-2"></div>
@@ -32,6 +32,13 @@
             <input type = "hidden" name = "mon" value = {{x}}></input>
             <input type = "submit" class="btn btn-success"value="Start Scanning"></input>
         </form></td>
+<td>
+
+         <form role="form" action="/stopScan">
+            <input type = "hidden" name = "mon" value = {{x}}></input>
+            <input type = "submit" class="btn btn-danger"value="Stop Scanning"></input>
+        </form></td>
+
 
             </tr>
 

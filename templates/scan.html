@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="refresh" content="30">
+     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap-theme.min.css') }}">
+     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.min.js') }}">
+    <title>Select adapter</title>
+</head>
+<body style = "background: #B2E0FF">
+
+
+<div class = "container">
+<h1><center>Results of Scan</center></h1>
+
+    <div class = "container-fluid"  >
+<div class = "row">
+
+    <div class = "col-md-2 col-sm-2">
+
+        <div class="bs-sidebar" id="sidebar" style = "background: #B2E0FF">
+      <ul class="nav nav-pills nav-stacked">
+        <li><a class  = "btn btn-primary" href="{{ url_for('index') }}">Home</a></li>
+        <li><a class  = "btn btn-danger"href={{url_for('stopScan')}}>Stop Scan</a></li>
+      </ul>
+    </div>
+
+    </div>
+    <div class = "col-md-10 col-sm-10" >
+        <center><h1>ACCESS POINTS</h1></center>
+        
+    <table class="table table-condensed table-hover" >
+        {%for x in bssid%}
+        {%if loop.index0 == 0%}
+        <thead><tr>
+        {%for y in x%}
+
+                        <!--{%if loop.index0 == 0 %}-->
+                            <!--<th>{{y}}</th>-->
+            <th>BSSID</th>
+                        <!--{%endif%}-->
+                        <!--{%if loop.index0 == 3 %}-->
+                            <!--<th>{{y}}</th>-->
+            <th>CHANNEL</th>
+                        <!--{%endif%}-->
+                        <!--{%if loop.index0 == 5 %}-->
+                            <!--<th>{{y}}</th>-->
+            <th>PRIVACY</th>
+                        <!--{%endif%}-->
+                        <!--{%if loop.index0 == 6 %}-->
+                            <!--<th>{{y}}</th>-->
+            <th>CIPHER</th>
+                        <!--{%endif%}-->
+                        <!--{%if loop.index0 == 7 %}-->
+                            <!--<th>{{y}}</th>-->
+            <th>Authentication</th>
+                        <!--{%endif%}-->
+                        <!--{%if loop.index0 == 8 %}-->
+                            <!--<th>{{y}}</th>-->
+            <th>POWER</th>
+                        <!--{%endif%}-->
+                        <!--{%if loop.index0 == 13 %}-->
+                            <!--<th>{{y}}</th>-->
+            <th>ESSID</th>
+                        <!--{%endif%}-->
+                {%endfor%}
+           </tr>
+        </thead>
+        {%else%}
+            <tr>
+                {%for y in x%}
+
+                        {%if loop.index0 == 0 %}
+                            <td>{{y}}</td>
+                        {%endif%}
+                        {%if loop.index0 == 3 %}
+                            <td>{{y}}</td>
+                        {%endif%}
+                        {%if loop.index0 == 5 %}
+                            <td>{{y}}</td>
+                        {%endif%}
+                        {%if loop.index0 == 6 %}
+                            <td>{{y}}</td>
+                        {%endif%}
+                        {%if loop.index0 == 7 %}
+                            <td>{{y}}</td>
+                        {%endif%}
+                        {%if loop.index0 == 8 %}
+                            <td>{{y}}</td>
+                        {%endif%}
+                        {%if loop.index0 == 13 %}
+                            <td>{{y}}</td>
+                        {%endif%}
+                {%endfor%}
+
+            </tr>
+    {%endif%}
+        {%endfor %}
+    </table>
+<center><h1>Clients</h1></center>
+    <table class="table table-condensed table-hover">
+        {%for x in clients%}
+            <tr>
+                {%for y in x%}
+
+                        {%if loop.index0 == 0 %}
+                            <td>{{y}}</td>
+                        {%endif%}
+                        {%if loop.index0 == 3 %}
+                            <td>{{y}}</td>
+                        {%endif%}
+                        {%if loop.index0 == 5 %}
+                            <td>{{y}}</td>
+                        {%endif%}
+                        {%if loop.index0 == 6 %}
+                            <td>{{y}}</td>
+                        {%endif%}
+                        {%if loop.index0 > 6 %}
+                            <td>{{y}}</td>
+                        {%endif%}
+
+                {%endfor%}
+
+            </tr>
+
+        {%endfor %}
+    </table>
+
+
+
+
+</div>
+
+
+</div></div>
+</div>
+</body>
+</html>

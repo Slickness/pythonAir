@@ -23,15 +23,23 @@ def startScan():
     adapter = request.form['mon']
     pythonAir.StartScanningAP(adapter)
     time.sleep(5)
-    return redirect(url_for('index'))
+    return redirect(url_for('viewScan'))
 
+
+@app.route('/viewScan')
+def viewScan():
+    file = pythonAir.getNewFile()
+    bssid, clients = pythonAir.ViewScan(file)
+    return render_template('scan.html',bssid = bssid, clients = clients)
 @app.route("/stopMonitored", methods=['POST'])
 def stopMonitored():
     adapter = request.form['mon']
     pythonAir.stopMonitorMode(adapter)
     time.sleep(5)
     return redirect(url_for('index'))
-
-
+@app.route("/stopScan")
+def stopScan():
+    pythonAir.stopScanning()
+    return redirect(url_for('index'))
 if __name__=="__main__":
     app.run(host='0.0.0.0',debug = True)
